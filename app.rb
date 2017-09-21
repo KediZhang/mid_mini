@@ -1,4 +1,6 @@
-# https://evening-escarpment-93924.herokuapp.com/
+# "LaundromatGo" is a SMS bot for a laundromat, customers can check the whether the laundromat is crowded in the piece the time they specify. Staff in the laundromat can also update the data base through SMS when popular hours of the laundromat has changed due to bad weather, broken machine, etc.
+# Link: https://evening-escarpment-93924.herokuapp.com/
+# Number: (412) 459 7528
 
 require "sinatra"
 require 'sinatra/reloader' if development?
@@ -32,7 +34,7 @@ get "/sms/incoming" do
   body = params[:Body] || ""
   body = body.downcase.strip
   
-  if body == "who"
+  if body == "who" and body.starts_with? "who"
     message = "I'm Daragh's MeBot"
   elsif body == "what"
       message = "I'm a bot that'll let you ask things about Daragh without bothering him."
