@@ -1,3 +1,5 @@
+# https://evening-escarpment-93924.herokuapp.com/
+
 require "sinatra"
 require 'sinatra/reloader' if development?
 
@@ -48,9 +50,9 @@ get "/sms/incoming" do
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
     r.message do |m|
       m.body( message )
-      unless media.nil?
-        m.media( media )
-      end
+      #unless media.nil?
+       # m.media( media )
+      #end
     end 
   end
 
