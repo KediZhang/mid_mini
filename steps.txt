@@ -1,0 +1,40 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Connecting to Twilio
+require 'sinatra'
+require 'sinatra/reloader' if development?
+
+require "twilio-ruby"
+
+configure :development do
+  require 'dotenv'
+  Dotenv.load
+end
+
+#...
+# more code
+
+get '/sms/incoming' do
+  
+  body = params[:Body] || ""
+  twiml = Twilio::TwiML::MessagingResponse.new do |r|
+    r.message do |m|
+      m.body( "You said: " + body)
+    end
+  end
+  
+  content_type 'text/wml'
+  twiml.to_s
+  
+end
