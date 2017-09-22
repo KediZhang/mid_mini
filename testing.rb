@@ -21,12 +21,12 @@ end
 # I have simplified the status into two catergory "busy" and "empty". Time has also been simplified into only two period: day and night.
 # Of course this data pool can be expended by dividing it into more catergories.
 
-busy = "m2t2w2r2f1f2s2u1u2"
+#busy = "m2t2w2r2f1f2s2u1u2"
 
-session['fetch1'] = "m"
-session['fetch2'] = "1"
-session['fecth'] = "m1"
-session['text_day'] = "Monday"
+#session['fetch1'] = "m"
+#session['fetch2'] = "1"
+#session['fecth'] = "m1"
+#session['text_day'] = "Monday"
 
 get "/" do
 	404
@@ -38,9 +38,7 @@ get "/sms/incoming" do
   session["last_intent"] ||= nil
   
   session["counter"] ||= 1
-  session["counter2"] ||= 1
   
-  count = session["counter"]  
   
   sender = params[:From] || ""
   body = params[:Body] || ""
