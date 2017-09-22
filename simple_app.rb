@@ -35,10 +35,8 @@ get "/sms/incoming" do
   body = body.downcase.strip
   
   
-  if session["counter"] == 1
-    message = "Hi, I'm LaundromatGo🤖 and I can help you to check whether it will be crowded in our laundromat. Type the day you want to check like this 'Mon' "
-    session["counter"] += 1
-    if body == "mon" 
+   
+  if body == "mon" 
       message = "Great! There won't be too many people in our laundromat in Monday"
     elsif body == "tue"
       message = "Great! There won't be too many people in our laundromat in Tuesday"
@@ -53,29 +51,13 @@ get "/sms/incoming" do
     elsif body == "sun"      
       message = "Sunday will be very crowded and busy, you'd better choose another time."
     else
+      if session["counter"] == 1
+        message = "Hi, I'm LaundromatGo🤖 and I can help you to check whether it will be crowded in our laundromat. Type the day you want to check like this 'Mon' "
+        session["counter"] += 1
+      else
       message = "I didn't understand that. You can say mon, tue, wed, etc."
-    end
-  else
-    message = "Welcome back, please tell me what day do you want to come to our laundromat like this 'Mon'"
-    if body == "mon" 
-      message = "Great! There won't be too many people in our laundromat in Monday"
-    elsif body == "tue"
-      message = "Great! There won't be too many people in our laundromat in Tuesday"
-    elsif body == "wed"
-      message = "Great! There won't be too many people in our laundromat in Wednesday"
-    elsif body == "thu"
-      message = "Great! There won't be too many people in our laundromat in Thursday"
-    elsif body == "fri"
-      message = "Great! There won't be too many people in our laundromat in Friday"
-    elsif body == "sat"      
-      message = "Saturday will be very crowded and busy, you'd better choose another time."
-    elsif body == "sun"      
-      message = "Sunday will be very crowded and busy, you'd better choose another time."
-    else
-      message = "I didn't understand that. You can say mon, tue, wed, etc."
-    end
-  end
- 
+      end
+   end
  
     
   
