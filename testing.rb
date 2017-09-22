@@ -52,7 +52,7 @@ get "/sms/incoming" do
     message = "Thank you #{sender} for reaching LaundromatGo🤖 again. Message me to begin your search"
   end
  
-  while session["counter2"] == 1
+  while counter2 == 1
    if body.include?('mon')
      fetch1 = "m"
      counter2 += 1
@@ -87,7 +87,7 @@ get "/sms/incoming" do
      fetch1 = "n"
      counter2 += 1 
      text_day = "Sunday" 
-     
+     break
    else
      message = "I didn't understand that. You can say Mon, Monday, Tue, etc."  
    end
