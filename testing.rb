@@ -27,6 +27,7 @@ fetch1 = "m"
 fetch2 = "1"
 fecth = "m1"
 text_day = "Monday"
+counter2 = 1
 
 get "/" do
 	404
@@ -48,10 +49,55 @@ get "/sms/incoming" do
     message = "Thanks for your first message. From #{sender} saying #{body}. I am a bot called LaundromatGo🤖 and working in Tamordnual Laundromat. I'd like to help you check whether it's busy or empty in our laundromat in the time period you specify. Message me a day in a week like 'Monday' to begin your search"
     session["counter"] += 1
   else
-    message = "#{text_day}Thank you #{sender} for reaching LaundromatGo🤖 again. Message me to begin your search"
+    message = "Thank you #{sender} for reaching LaundromatGo🤖 again. Message me to begin your search"
+  end
+ 
+  while session["counter2"] == 1
+   if body.include?('mon')
+     fetch1 = "m"
+     counter2 += 1
+     text_day = "Monday"
+     break
+   elsif body.include?('tue')
+     fetch1 = "t"
+     counter2 += 1
+     text_day = "Tuesday"
+     break
+   elsif body.include?('wed')
+     fetch1 = "w"
+     counter2 += 1
+     text_day = "Wednesday"
+     break
+   elsif body.include?('thu')
+     fetch1 = "r"
+     counter2 += 1
+     text_day = "Thursday"
+     break
+   elsif body.include?('fri')
+     fetch1 = "f"
+     counter2 += 1
+     text_day = "Friday"
+     break
+   elsif body.include?('sat')
+     fetch1 = "s"
+     counter2 += 1
+     text_day = "Saturday"
+     break
+   elsif body.include?('sun')
+     fetch1 = "n"
+     counter2 += 1 
+     text_day = "Sunday" 
+     break
+   else
+     message = "I didn't understand that. You can say Mon, Monday, Tue, etc."  
+   end
   end
  
  
+ 
+ 
+  message = "Got it #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+  
  
  
  
