@@ -23,10 +23,10 @@ end
 
 busy = "m2t2w2r2f1f2s2u1u2"
 
-session['fetch1'] = "m"
-session['fetch2'] = "1"
-session['fecth'] = "m1"
-session['text_day'] = "Monday"
+fetch1 = "m"
+fetch2 = "1"
+fecth = "m1"
+text_day = "Monday"
 
 get "/" do
 	404
@@ -48,7 +48,7 @@ get "/sms/incoming" do
     message = "Thanks for your first message. From #{sender} saying #{body}. I am a bot called LaundromatGo🤖 and working in Tamordnual Laundromat. I'd like to help you check whether it's busy or empty in our laundromat in the time period you specify. Message me a day in a week like 'Monday' to begin your search"
     session["counter"] += 1
   else
-    message = "Thank you #{sender} for reaching LaundromatGo🤖 again. Message me to begin your search"
+    message = "#{text_day}Thank you #{sender} for reaching LaundromatGo🤖 again. Message me to begin your search"
   end
  
  
