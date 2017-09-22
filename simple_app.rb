@@ -36,19 +36,19 @@ get "/sms/incoming" do
   
   
    
-  if body == "mon" 
+  if body.include? "mon" 
       message = "Great! There won't be too many people in our laundromat in Monday"
-    elsif body == "tue"
+    elsif body.include? "tue"
       message = "Great! There won't be too many people in our laundromat in Tuesday"
-    elsif body == "wed"
+    elsif body.include? "wed"
       message = "Great! There won't be too many people in our laundromat in Wednesday"
-    elsif body == "thu"
+    elsif body.include? "thu"
       message = "Great! There won't be too many people in our laundromat in Thursday"
-    elsif body == "fri"
+    elsif body.include? "fri"
       message = "Great! There won't be too many people in our laundromat in Friday"
-    elsif body == "sat"      
+    elsif body.include? "sat"      
       message = "Saturday will be very crowded and busy, you'd better choose another time."
-    elsif body == "sun"      
+    elsif body.include? "sun"      
       message = "Sunday will be very crowded and busy, you'd better choose another time."
     else
       if session["counter"] == 1
