@@ -23,7 +23,7 @@ end
 
 DAY = ["mon","tue","wed","thu","fri","sat","sun"]
 
-
+session["count"] == 1
 
 #incoming_text_day?
 def incoming_text_day? body
