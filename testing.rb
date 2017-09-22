@@ -93,7 +93,21 @@ get "/sms/incoming" do
   end
 
  
- 
+  if body.to_i < 18
+     session['fetch2'] = "1"
+    else
+     session['fetch2'] = "2"
+  end
+    
+    fetch = session['fetch1']+session['fetch2']
+  
+  if busy.include? fetch
+     message = "#{body} o'clock on #{text_day} will be very crowded and busy, you'd better choose another time."
+    else
+     message = "Great! There won't be too many people in our laundromat in #{body} o'clock on #{text_day}"
+  end
+    
+    
  
   
  
