@@ -21,7 +21,7 @@ end
 # I have simplified the status into two catergory "busy" and "empty". Time has also been simplified into only two period: day and night.
 # Of course this data pool can be expended by dividing it into more catergories.
 
-BUSY = ["m2","t2","w2","r2","f1","f2","s2","u1","u2"]
+busy = "m2t2w2r2f1f2s2u1u2"
 
 session['fetch1'] = "m"
 session['fetch2'] = "1"
@@ -57,30 +57,37 @@ get "/sms/incoming" do
    if body.include?('mon')
      session['fetch1'] = "m"
      session["counter2"] += 1
+     session['text_day'] = "Monday"
      break
    elsif body.include?('tue')
      session['fetch1'] = "t"
      session["counter2"] += 1
+     session['text_day'] = "Tuesday"
      break
    elsif body.include?('wed')
      session['fetch1'] = "w"
      session["counter2"] += 1
+     session['text_day'] = "Wednesday"
      break
    elsif body.include?('thu')
      session['fetch1'] = "r"
      session["counter2"] += 1
+     session['text_day'] = "Thursday"
      break
    elsif body.include?('fri')
      session['fetch1'] = "f"
      session["counter2"] += 1
+     session['text_day'] = "Friday"
      break
    elsif body.include?('sat')
      session['fetch1'] = "s"
      session["counter2"] += 1
+     session['text_day'] = "Saturday"
      break
    elsif body.include?('sun')
      session['fetch1'] = "n"
-     session["counter2"] += 1  
+     session["counter2"] += 1 
+     session['text_day'] = "Sunday" 
      break
    else
      message = "I didn't understand that. You can say Mon, Monday, Tue, etc."  
@@ -90,19 +97,17 @@ get "/sms/incoming" do
  
  
  
- 
- 
   message = "Great! Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
   
   while session["counter2"] == 2
     if body.to_i < 18
-     fetch2 = "1"
+     session['fetch2'] = "1"
     else
-     fetch2 = "2"
+     session['fetch2'] = "2"
     end
-    fetch = fetch1+fetch2
-    if BUSY.include? fetch
-     message = body + " o'clock on " + text_day + " will be very crowded and busy, you'd better choose another time."
+    fetch = session['fetch1']+session['fetch2']
+    if busy.include? fetch
+     message = body + " o'clock on " + session['text_day'] + " will be very crowded and busy, you'd better choose another time."
     else
      message = "Great! There won't be too many people in our laundromat in " + body + " o'clock on " + text_day
     end
