@@ -52,34 +52,42 @@ get "/sms/incoming" do
     message = "Thank you #{sender} for reaching LaundromatGo🤖 again. Message me to begin your search"
   end
  
+ 
   if body.include?('mon')
      fetch1 = "m"
-     counter2 += 1
      text_day = "Monday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+   
    elsif body.include?('tue')
      fetch1 = "t"
-     counter2 += 1
      text_day = "Tuesday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('wed')
      fetch1 = "w"
-     counter2 += 1
      text_day = "Wednesday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('thu')
      fetch1 = "r"
-     counter2 += 1
      text_day = "Thursday"
-   elsif body.include?('fri')
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
+   elsif body.include?('fri')     
      fetch1 = "f"
-     counter2 += 1
      text_day = "Friday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('sat')
      fetch1 = "s"
-     counter2 += 1
      text_day = "Saturday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('sun')
      fetch1 = "n"
-     counter2 += 1 
      text_day = "Sunday" 
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    else
      message = "I didn't understand that. You can say Mon, Monday, Tue, etc."  
   end
@@ -87,7 +95,6 @@ get "/sms/incoming" do
  
  
  
-  message = "Got it #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
   
  
  
