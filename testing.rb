@@ -26,7 +26,7 @@ busy = "m2t2w2r2f1f2s2u1u2"
 fetch1 = "m"
 fetch2 = "1"
 fecth = "m1"
-text_day = "Monday"
+text_day = nil
 counter2 = 1
 
 get "/" do
@@ -87,7 +87,7 @@ get "/sms/incoming" do
      fetch1 = "n"
      counter2 += 1 
      text_day = "Sunday" 
-     break
+     
    else
      message = "I didn't understand that. You can say Mon, Monday, Tue, etc."  
    end
