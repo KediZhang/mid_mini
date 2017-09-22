@@ -50,8 +50,8 @@ get "/sms/incoming" do
       message = "Great! There won't be too many people in our laundromat in Friday"
     elsif body = "sat"      
       message = "Saturday will be very crowded and busy, you'd better choose another time."
-    elsif body = "sat"      
-      message = "Saturday will be very crowded and busy, you'd better choose another time."
+    elsif body = "sun"      
+      message = "Sunday will be very crowded and busy, you'd better choose another time."
     else
       message = "I didn't understand that. You can say mon, tue, wed, etc."
     end
@@ -69,8 +69,8 @@ get "/sms/incoming" do
       message = "Great! There won't be too many people in our laundromat in Friday"
     elsif body = "sat"      
       message = "Saturday will be very crowded and busy, you'd better choose another time."
-    elsif body = "sat"      
-      message = "Saturday will be very crowded and busy, you'd better choose another time."
+    elsif body = "sun"      
+      message = "Sunday will be very crowded and busy, you'd better choose another time."
     else
       message = "I didn't understand that. You can say mon, tue, wed, etc."
     end
