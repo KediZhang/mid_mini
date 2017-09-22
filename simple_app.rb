@@ -23,10 +23,11 @@ end
 
 busy = "m2t2w2r2f1f2s2u1u2"
 
-session['fetch1'] = "m"
-session['fetch2'] = "1"
-session['fecth'] = "m1"
-session['text_day'] = "Monday"
+fetch1 = "m"
+fetch2 = "1"
+fecth = "m1"
+text_day = nil
+counter2 = 1
 
 get "/" do
 	404
@@ -38,9 +39,7 @@ get "/sms/incoming" do
   session["last_intent"] ||= nil
   
   session["counter"] ||= 1
-  session["counter2"] ||= 1
   
-  count = session["counter"]  
   
   sender = params[:From] || ""
   body = params[:Body] || ""
@@ -53,67 +52,68 @@ get "/sms/incoming" do
     message = "Thank you #{sender} for reaching LaundromatGo🤖 again. Message me to begin your search"
   end
  
-  while session["counter2"] == 1
-   if body.include?('mon')
-     session['fetch1'] = "m"
-     session["counter2"] += 1
-     session['text_day'] = "Monday"
-     break
+ 
+  if body.include?('mon')
+     fetch1 = "m"
+     text_day = "Monday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+   
    elsif body.include?('tue')
-     session['fetch1'] = "t"
-     session["counter2"] += 1
-     session['text_day'] = "Tuesday"
-     break
+     fetch1 = "t"
+     text_day = "Tuesday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('wed')
-     session['fetch1'] = "w"
-     session["counter2"] += 1
-     session['text_day'] = "Wednesday"
-     break
+     fetch1 = "w"
+     text_day = "Wednesday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('thu')
-     session['fetch1'] = "r"
-     session["counter2"] += 1
-     session['text_day'] = "Thursday"
-     break
-   elsif body.include?('fri')
-     session['fetch1'] = "f"
-     session["counter2"] += 1
-     session['text_day'] = "Friday"
-     break
+     fetch1 = "r"
+     text_day = "Thursday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
+   elsif body.include?('fri')     
+     fetch1 = "f"
+     text_day = "Friday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('sat')
-     session['fetch1'] = "s"
-     session["counter2"] += 1
-     session['text_day'] = "Saturday"
-     break
+     fetch1 = "s"
+     text_day = "Saturday"
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    elsif body.include?('sun')
-     session['fetch1'] = "n"
-     session["counter2"] += 1 
-     session['text_day'] = "Sunday" 
-     break
+     fetch1 = "n"
+     text_day = "Sunday" 
+     message = "You said #{text_day}. Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+     
    else
      message = "I didn't understand that. You can say Mon, Monday, Tue, etc."  
-   end
   end
+
  
- 
- 
- 
-  message = "Great! Then, what time do you want to come on that day? Our business hour is 9am to 10pm, so please consider type intergals from 9 to 21"
+  if body.to_i < 18
+     fetch2 = "1"
+    else
+     fetch2 = "2"
+  end
+    
+    fetch = fetch1 + fetch2
   
-  #while session["counter2"] == 2
-   # if body.to_i < 18
-    # session['fetch2'] = "1"
-    #else
-     #session['fetch2'] = "2"
-    #end
-  #  fetch = session['fetch1']+session['fetch2']
-   # if busy.include? fetch
-    # message = body + " o'clock on " + session['text_day'] + " will be very crowded and busy, you'd better choose another time."
-  #  else
-   #  message = "Great! There won't be too many people in our laundromat in " + body + " o'clock on " + text_day
-   # end
-    #session["count"] += 1
-    #break
-#  end  
+  if busy.include? fetch
+     message = "#{body} o'clock on #{text_day} will be very crowded and busy, you'd better choose another time."
+    else
+     message = "Great! There won't be too many people in our laundromat in #{body} o'clock on #{text_day}"
+  end
+    
+    
+ 
+  
+ 
+ 
+ 
+ 
     
   
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
@@ -131,6 +131,5 @@ get "/sms/incoming" do
   
   
 end
-
 
 

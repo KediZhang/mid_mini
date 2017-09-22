@@ -1,1 +1,1 @@
-web: bundle exec ruby testing.rb -p $PORT
+web: bundle exec ruby simple.rb -p $PORT
