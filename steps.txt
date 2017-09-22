@@ -1,3 +1,11 @@
+# Staff in the laundromat can also update the data base through SMS when popular hours of the laundromat has changed due to bad weather, broken machine, etc.
+
+
+
+
+
+
+
 
 # https://evening-escarpment-93924.herokuapp.com/
 
