@@ -20,28 +20,6 @@ end
 
 # I have simplified the status into two catergory "busy" and "empty". Time has also been simplified into only two period: day and night.
 # Of course this data pool can be expended by dividing it into more catergories.
-BUSY = ["m2","t2","w2","r2","f1","f2","s2","u1","u2"]
-EMPTY = ["m1","t1","w1","r1","s1"]
-
-DAY = ["mon","tue","wed","thu","fri","sat","sun"]
-TIME = (9..21).to_a
-
-fetch1 = "m"
-fetch2 = "1"
-fecth = "m1"
-text_day = "Monday"
-
-
-#incoming_text_day?
-def incoming_text_day? body
-  DAY.each do |word|
-    if body.include?(word)
-      return true
-    end
-  end
-  return false
-end
-
 
 
 get "/" do
